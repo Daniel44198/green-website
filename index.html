@@ -1,379 +1,197 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Ocean Pulse | Living Ocean System</title>
-
+<title>Ocean Pulse | Final Project</title>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-body{
-margin:0;
-font-family:'Plus Jakarta Sans',sans-serif;
-color:white;
-overflow-x:hidden;
-background:#020617;
-}
-
-/* 🌊 CANVAS */
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
-}
+body{margin:0;font-family:'Plus Jakarta Sans',sans-serif;color:white;overflow-x:hidden;background:#020617;}
+canvas{position:fixed;top:0;left:0;z-index:-1;}
 
 /* HERO */
-.hero{
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:20px;
-}
-
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;}
 .hero h1{
-font-size:4rem;
-background:linear-gradient(90deg,#fff,#00f2fe);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-animation:glow 4s infinite alternate;
+    font-size:4.5rem;
+    background:linear-gradient(90deg,#fff,#00f2fe);
+    -webkit-background-clip:text;
+    background-clip: text; /* Correção do aviso amarelo */
+    -webkit-text-fill-color:transparent;
+    animation:glow 4s infinite alternate;
 }
-
-@keyframes glow{
-from{text-shadow:0 0 10px rgba(0,242,254,0.2);}
-to{text-shadow:0 0 25px rgba(0,242,254,0.7);}
-}
-
-.hero p{
-max-width:800px;
-color:#94a3b8;
-}
-
-/* BUTTONS */
-.btn{
-padding:14px 28px;
-margin:10px;
-display:inline-block;
-border-radius:12px;
-text-decoration:none;
-color:white;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.1);
-transition:0.3s;
-position:relative;
-overflow:hidden;
-}
-
-.btn:hover{
-transform:scale(1.1);
-border-color:#00f2fe;
-box-shadow:0 0 20px rgba(0,242,254,0.3);
-}
-
-.btn::after{
-content:"";
-position:absolute;
-top:0;
-left:-100%;
-width:100%;
-height:100%;
-background:rgba(255,255,255,0.15);
-transition:0.5s;
-}
-
-.btn:hover::after{
-left:100%;
-}
+@keyframes glow{from{text-shadow:0 0 10px rgba(0,242,254,0.2);}to{text-shadow:0 0 25px rgba(0,242,254,0.7);}}
+.hero p{max-width:800px;color:#94a3b8;font-size:1.2rem;}
 
 /* SECTIONS */
-section{
-padding:100px 20px;
-max-width:1200px;
-margin:auto;
-}
-
+section{padding:80px 20px;max-width:1200px;margin:auto;}
 h2{
-text-align:center;
-font-size:2.5rem;
-margin-bottom:50px;
-animation:glow 4s infinite alternate;
+    text-align:center;
+    font-size:3rem;
+    margin-bottom:40px;
+    background:linear-gradient(90deg,#00f2fe,#fff);
+    -webkit-background-clip:text;
+    background-clip: text; /* Correção do aviso amarelo */
+    -webkit-text-fill-color:transparent;
 }
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;}
 
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:25px;
-}
-
-/* CARDS */
+/* CARDS COM MOVIMENTO DE ONDA */
+.card-link{text-decoration:none;color:inherit;display:block;}
 .card{
-background:rgba(255,255,255,0.03);
-border:1px solid rgba(255,255,255,0.1);
-padding:30px;
-border-radius:20px;
-backdrop-filter:blur(10px);
-transition:0.4s;
-animation:floatCard 6s ease-in-out infinite;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:24px;
+    backdrop-filter:blur(10px);
+    transition:0.4s;
+    overflow:hidden;
+    height:100%;
+    animation:floatCard 5s ease-in-out infinite;
+}
+
+.grid a:nth-child(2) .card { animation-delay: 1s; }
+.grid a:nth-child(3) .card { animation-delay: 2s; }
+
+@keyframes floatCard{
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
 }
 
 .card:hover{
-transform:translateY(-15px) scale(1.03);
-border-color:#00f2fe;
-box-shadow:0 0 25px rgba(0,242,254,0.2);
+    border-color:#00f2fe;
+    background:rgba(255,255,255,0.08);
+    box-shadow:0 0 30px rgba(0,242,254,0.15);
+    animation-play-state: paused;
 }
 
-@keyframes floatCard{
-0%{transform:translateY(0);}
-50%{transform:translateY(-10px);}
-100%{transform:translateY(0);}
-}
+.card-img{width:100%;height:200px;object-fit:cover;opacity:0.8;}
+.card-content{padding:25px;}
+.icon{font-size:30px;color:#00f2fe;margin-bottom:15px; display: block;}
 
-/* 🌊 ICONS */
-.icon{
-font-size:40px;
-color:#00f2fe;
-margin-bottom:15px;
-animation:waveIcon 2.5s ease-in-out infinite;
-transition:0.3s;
-}
+/* COMPARISON SECTION */
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px;}
+.comp-box{position:relative;border-radius:20px;overflow:hidden;border:2px solid rgba(255,255,255,0.1);}
+.comp-box img{width:100%;height:400px;object-fit:cover;}
+.label{position:absolute;bottom:20px;left:20px;background:rgba(0,0,0,0.7);padding:10px 20px;border-radius:10px;font-weight:bold;text-transform:uppercase;}
+.label.bad{color:#ff4444;border-left:4px solid #ff4444;}
+.label.good{color:#00ff88;border-left:4px solid #00ff88;}
 
-.icon:hover{
-transform:scale(1.35) rotate(12deg);
-text-shadow:0 0 25px #00f2fe;
-}
+footer{text-align:center;padding:50px;border-top:1px solid rgba(255,255,255,0.1);color:#64748b;}
 
-@keyframes waveIcon{
-0%{transform:translate(0,0);}
-25%{transform:translate(3px,-10px);}
-50%{transform:translate(0,-5px);}
-75%{transform:translate(-3px,-10px);}
-100%{transform:translate(0,0);}
+.btn-start {
+    padding:15px 35px; 
+    border:1px solid #00f2fe; 
+    border-radius:15px; 
+    color:white; 
+    text-decoration:none; 
+    display:inline-block; 
+    margin-top:25px;
+    background: rgba(0, 242, 254, 0.05);
+    transition: 0.3s;
 }
-
-/* LINKS */
-a{
-color:#38bdf8;
-text-decoration:none;
-}
-
-a:hover{
-color:#00f2fe;
-}
-
-footer{
-text-align:center;
-padding:50px;
-border-top:1px solid rgba(255,255,255,0.1);
-color:#64748b;
+.btn-start:hover {
+    background: #00f2fe;
+    color: #020617;
+    box-shadow: 0 0 20px #00f2fe;
 }
 </style>
 </head>
 
 <body>
-
 <canvas id="bg"></canvas>
 
 <header class="hero">
 <div>
-<h1>🌊 Ocean Pulse System</h1>
-<p>Living ocean simulation with global plastic pollution data.</p>
-
-<a href="#problem" class="btn">Start</a>
-<a href="#sources" class="btn">Sources</a>
+<h1>🌊 Ocean Pulse</h1>
+<p>An interactive study on marine pollution and sustainable technology solutions. 🌍✨</p>
+<a href="#impact" class="btn-start">Start Journey 🚀</a>
 </div>
 </header>
 
-<section id="problem">
-<h2>🌍 Global Impact</h2>
-
+<section id="impact">
+<h2>The Environmental Crisis 🐢</h2>
 <div class="grid">
-
-<div class="card">
-<i class="fas fa-fish icon"></i>
-<h3>Marine Life</h3>
-<p>Millions of animals die every year due to plastic.</p>
-</div>
-
-<div class="card">
-<i class="fas fa-water icon"></i>
-<h3>Ocean Damage</h3>
-<p>Plastic lasts up to 500 years in the ocean.</p>
-</div>
-
-<div class="card">
-<i class="fas fa-user icon"></i>
-<h3>Human Impact</h3>
-<p>Microplastics are found in food and water.</p>
-</div>
-
+    <a href="https://www.youtube.com/watch?v=ju_2nuK5O-E" target="_blank" class="card-link">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?auto=format&fit=crop&w=800&q=80" class="card-img" alt="Plastic">
+            <div class="card-content">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                <h3>Marine Pollution 🆘</h3>
+                <p>Over 8 million tons of plastic enter our oceans annually, destroying ecosystems and killing sea creatures.</p>
+            </div>
+        </div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=x74H8I1iRxg" target="_blank" class="card-link">
+        <div class="card">
+            <img src="https://images.encounteredu.com/production/uploads/gallery-sources-of-microplastic-hero.jpg?w=1200&h=800&q=80&auto=format&fit=clip&dm=1631570051&s=eb30df70dd0bdfee1dff23bfa99ae27b" class="card-img" alt="Microplastics">
+            <div class="card-content">
+                <i class="fas fa-microscope icon"></i>
+                <h3>Microplastics 🔬</h3>
+                <p>Plastic breaks down into tiny particles that contaminate our food chain, affecting human health globally.</p>
+            </div>
+        </div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=1qT-rOXss6Q" target="_blank" class="card-link">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80" class="card-img" alt="Habitat Loss">
+            <div class="card-content">
+                <i class="fas fa-biohazard icon"></i>
+                <h3>Habitat Loss 🏚️</h3>
+                <p>Pollution destroys coral reefs and vital underwater forests, leaving marine life without a safe home.</p>
+            </div>
+        </div>
+    </a>
 </div>
 </section>
 
 <section>
-<h2>📊 Data</h2>
-
-<div class="grid">
-
-<div class="card"><h3>8M Tons</h3><p>Plastic per year.</p></div>
-<div class="card"><h3>700+</h3><p>Species affected.</p></div>
-<div class="card"><h3>2050</h3><p>More plastic than fish.</p></div>
-
+<h2>Visual Evidence: Before vs After 📸</h2>
+<div class="comparison">
+    <div class="comp-box">
+        <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=800&q=80" alt="Polluted">
+        <span class="label bad">Human Negligence ❌</span>
+    </div>
+    <div class="comp-box">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Clean">
+        <span class="label good">Sustainable Future ✅</span>
+    </div>
 </div>
 </section>
 
 <section>
-<h2>🧪 Solutions</h2>
-
+<h2>Innovative Solutions 💡</h2>
 <div class="grid">
-
-<div class="card">
-<i class="fas fa-robot icon"></i>
-<h3>AI Cleanup</h3>
-<p>Smart robots clean oceans.</p>
-</div>
-
-<div class="card">
-<i class="fas fa-satellite icon"></i>
-<h3>Satellites</h3>
-<p>Track pollution globally.</p>
-</div>
-
-<div class="card">
-<i class="fas fa-recycle icon"></i>
-<h3>Bioplastics</h3>
-<p>Eco materials replace plastic.</p>
-</div>
-
-</div>
-</section>
-
-<section id="sources">
-<h2>🌐 Sources</h2>
-
-<div class="grid">
-
-<div class="card">
-<i class="fas fa-video icon"></i>
-<h3>Videos</h3>
-<p><a target="_blank" href="https://www.youtube.com/watch?v=AIwXz2aYxw0">BBC Earth</a></p>
-<p><a target="_blank" href="https://www.youtube.com/watch?v=ROW9F-c0kIQ">Ocean Cleanup</a></p>
-</div>
-
-<div class="card">
-<i class="fas fa-newspaper icon"></i>
-<h3>News</h3>
-<p><a target="_blank" href="https://www.bbc.com/news/science-environment-38014710">BBC</a></p>
-<p><a target="_blank" href="https://www.nationalgeographic.com/environment/article/plastic-pollution">NatGeo</a></p>
-<p><a target="_blank" href="https://www.unep.org/plastic-pollution">UN</a></p>
-</div>
-
+    <a href="https://theoceancleanup.com/" target="_blank" class="card-link">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80" class="card-img" alt="AI">
+            <div class="card-content">
+                <i class="fas fa-robot icon"></i>
+                <h3>AI Cleanup 🤖</h3>
+                <p>Autonomous systems are now capable of removing tons of plastic from rivers before it reaches the sea.</p>
+            </div>
+        </div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=VAApbeM_m1Y" target="_blank" class="card-link">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80" class="card-img" alt="Materials">
+            <div class="card-content">
+                <i class="fas fa-seedling icon"></i>
+                <h3>Green Materials 🌱</h3>
+                <p>The development of bioplastics offers a 100% biodegradable alternative to traditional harmful materials.</p>
+            </div>
+        </div>
+    </a>
 </div>
 </section>
 
 <footer>
-🌊 Ocean Pulse System
+🌊 Ocean Pulse System | English Final Project | 2026
 </footer>
 
 <script>
-const canvas=document.getElementById("bg");
-const ctx=canvas.getContext("2d");
-
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let time=0;
-
-/* WAVES */
-function wave(c,a,f,s,y){
-ctx.beginPath();
-for(let x=0;x<canvas.width;x++){
-let yy=Math.sin(x*f+time*s)*a+y;
-ctx.lineTo(x,yy);
-}
-ctx.strokeStyle=c;
-ctx.stroke();
-}
-
-/* BUBBLES */
-let bubbles=[];
-for(let i=0;i<60;i++){
-bubbles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2,
-s:Math.random()*0.5+0.2
-});
-}
-
-function drawBubbles(){
-for(let b of bubbles){
-ctx.beginPath();
-ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
-ctx.fillStyle="rgba(0,200,255,0.15)";
-ctx.fill();
-b.y-=b.s;
-if(b.y<0){
-b.y=canvas.height;
-b.x=Math.random()*canvas.width;
-}
-}
-}
-
-/* ANIMATE */
-function animate(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-let g=ctx.createLinearGradient(0,0,0,canvas.height);
-g.addColorStop(0,"#020617");
-g.addColorStop(1,"#00334d");
-
-ctx.fillStyle=g;
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-wave("rgba(0,200,255,0.2)",20,0.01,1,canvas.height*0.5);
-wave("rgba(0,150,255,0.1)",35,0.008,1.2,canvas.height*0.55);
-
-drawBubbles();
-
-time+=0.02;
-requestAnimationFrame(animate);
-}
-
-animate();
-
-/* ICON INTERACTION */
-const icons=document.querySelectorAll(".icon");
-
-window.addEventListener("mousemove",(e)=>{
-let mx=e.clientX;
-let my=e.clientY;
-
-icons.forEach(icon=>{
-let r=icon.getBoundingClientRect();
-let ix=r.left+r.width/2;
-let iy=r.top+r.height/2;
-
-let dx=mx-ix;
-let dy=my-iy;
-
-let dist=Math.sqrt(dx*dx+dy*dy);
-
-if(dist<150){
-let f=(150-dist)/150;
-icon.style.transform=`translate(${dx*f*0.2}px,${dy*f*0.2}px) scale(${1+f*0.3})`;
-}else{
-icon.style.transform="";
-}
-});
-});
+const canvas=document.getElementById("bg");const ctx=canvas.getContext("2d");canvas.width=window.innerWidth;canvas.height=window.innerHeight;let time=0;function wave(c,a,f,s,y){ctx.beginPath();for(let x=0;x<canvas.width;x++){let yy=Math.sin(x*f+time*s)*a+y;ctx.lineTo(x,yy)}ctx.strokeStyle=c;ctx.stroke()}let bubbles=[];for(let i=0;i<60;i++){bubbles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2,s:Math.random()*0.5+0.2})}function drawBubbles(){for(let b of bubbles){ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);ctx.fillStyle="rgba(0,200,255,0.15)";ctx.fill();b.y-=b.s;if(b.y<0){b.y=canvas.height;b.x=Math.random()*canvas.width}}}function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);let g=ctx.createLinearGradient(0,0,0,canvas.height);g.addColorStop(0,"#020617");g.addColorStop(1,"#00334d");ctx.fillStyle=g;ctx.fillRect(0,0,canvas.width,canvas.height);wave("rgba(0,200,255,0.2)",20,0.01,1,canvas.height*0.5);wave("rgba(0,150,255,0.1)",35,0.008,1.2,canvas.height*0.55);drawBubbles();time+=0.02;requestAnimationFrame(animate)}animate();
 </script>
-
 </body>
 </html>
