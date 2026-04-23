@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ocean Pulse | Living Ocean System</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Plus Jakarta Sans',sans-serif;
+color:white;
+overflow-x:hidden;
+background:#020617;
+}
+
+/* 🌊 CANVAS */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+}
+
+.hero h1{
+font-size:4rem;
+background:linear-gradient(90deg,#fff,#00f2fe);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:glow 4s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px rgba(0,242,254,0.2);}
+to{text-shadow:0 0 25px rgba(0,242,254,0.7);}
+}
+
+.hero p{
+max-width:800px;
+color:#94a3b8;
+}
+
+/* BUTTONS */
+.btn{
+padding:14px 28px;
+margin:10px;
+display:inline-block;
+border-radius:12px;
+text-decoration:none;
+color:white;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+transition:0.3s;
+position:relative;
+overflow:hidden;
+}
+
+.btn:hover{
+transform:scale(1.1);
+border-color:#00f2fe;
+box-shadow:0 0 20px rgba(0,242,254,0.3);
+}
+
+.btn::after{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:rgba(255,255,255,0.15);
+transition:0.5s;
+}
+
+.btn:hover::after{
+left:100%;
+}
+
+/* SECTIONS */
+section{
+padding:100px 20px;
+max-width:1200px;
+margin:auto;
+}
+
+h2{
+text-align:center;
+font-size:2.5rem;
+margin-bottom:50px;
+animation:glow 4s infinite alternate;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+/* CARDS */
+.card{
+background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.1);
+padding:30px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+transition:0.4s;
+animation:floatCard 6s ease-in-out infinite;
+}
+
+.card:hover{
+transform:translateY(-15px) scale(1.03);
+border-color:#00f2fe;
+box-shadow:0 0 25px rgba(0,242,254,0.2);
+}
+
+@keyframes floatCard{
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
+}
+
+/* 🌊 ICONS */
+.icon{
+font-size:40px;
+color:#00f2fe;
+margin-bottom:15px;
+animation:waveIcon 2.5s ease-in-out infinite;
+transition:0.3s;
+}
+
+.icon:hover{
+transform:scale(1.35) rotate(12deg);
+text-shadow:0 0 25px #00f2fe;
+}
+
+@keyframes waveIcon{
+0%{transform:translate(0,0);}
+25%{transform:translate(3px,-10px);}
+50%{transform:translate(0,-5px);}
+75%{transform:translate(-3px,-10px);}
+100%{transform:translate(0,0);}
+}
+
+/* LINKS */
+a{
+color:#38bdf8;
+text-decoration:none;
+}
+
+a:hover{
+color:#00f2fe;
+}
+
+footer{
+text-align:center;
+padding:50px;
+border-top:1px solid rgba(255,255,255,0.1);
+color:#64748b;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+
+<header class="hero">
+<div>
+<h1>🌊 Ocean Pulse System</h1>
+<p>Living ocean simulation with global plastic pollution data.</p>
+
+<a href="#problem" class="btn">Start</a>
+<a href="#sources" class="btn">Sources</a>
+</div>
+</header>
+
+<section id="problem">
+<h2>🌍 Global Impact</h2>
+
+<div class="grid">
+
+<div class="card">
+<i class="fas fa-fish icon"></i>
+<h3>Marine Life</h3>
+<p>Millions of animals die every year due to plastic.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-water icon"></i>
+<h3>Ocean Damage</h3>
+<p>Plastic lasts up to 500 years in the ocean.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-user icon"></i>
+<h3>Human Impact</h3>
+<p>Microplastics are found in food and water.</p>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>📊 Data</h2>
+
+<div class="grid">
+
+<div class="card"><h3>8M Tons</h3><p>Plastic per year.</p></div>
+<div class="card"><h3>700+</h3><p>Species affected.</p></div>
+<div class="card"><h3>2050</h3><p>More plastic than fish.</p></div>
+
+</div>
+</section>
+
+<section>
+<h2>🧪 Solutions</h2>
+
+<div class="grid">
+
+<div class="card">
+<i class="fas fa-robot icon"></i>
+<h3>AI Cleanup</h3>
+<p>Smart robots clean oceans.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-satellite icon"></i>
+<h3>Satellites</h3>
+<p>Track pollution globally.</p>
+</div>
+
+<div class="card">
+<i class="fas fa-recycle icon"></i>
+<h3>Bioplastics</h3>
+<p>Eco materials replace plastic.</p>
+</div>
+
+</div>
+</section>
+
+<section id="sources">
+<h2>🌐 Sources</h2>
+
+<div class="grid">
+
+<div class="card">
+<i class="fas fa-video icon"></i>
+<h3>Videos</h3>
+<p><a target="_blank" href="https://www.youtube.com/watch?v=AIwXz2aYxw0">BBC Earth</a></p>
+<p><a target="_blank" href="https://www.youtube.com/watch?v=ROW9F-c0kIQ">Ocean Cleanup</a></p>
+</div>
+
+<div class="card">
+<i class="fas fa-newspaper icon"></i>
+<h3>News</h3>
+<p><a target="_blank" href="https://www.bbc.com/news/science-environment-38014710">BBC</a></p>
+<p><a target="_blank" href="https://www.nationalgeographic.com/environment/article/plastic-pollution">NatGeo</a></p>
+<p><a target="_blank" href="https://www.unep.org/plastic-pollution">UN</a></p>
+</div>
+
+</div>
+</section>
+
+<footer>
+🌊 Ocean Pulse System
+</footer>
+
+<script>
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let time=0;
+
+/* WAVES */
+function wave(c,a,f,s,y){
+ctx.beginPath();
+for(let x=0;x<canvas.width;x++){
+let yy=Math.sin(x*f+time*s)*a+y;
+ctx.lineTo(x,yy);
+}
+ctx.strokeStyle=c;
+ctx.stroke();
+}
+
+/* BUBBLES */
+let bubbles=[];
+for(let i=0;i<60;i++){
+bubbles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+s:Math.random()*0.5+0.2
+});
+}
+
+function drawBubbles(){
+for(let b of bubbles){
+ctx.beginPath();
+ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+ctx.fillStyle="rgba(0,200,255,0.15)";
+ctx.fill();
+b.y-=b.s;
+if(b.y<0){
+b.y=canvas.height;
+b.x=Math.random()*canvas.width;
+}
+}
+}
+
+/* ANIMATE */
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+let g=ctx.createLinearGradient(0,0,0,canvas.height);
+g.addColorStop(0,"#020617");
+g.addColorStop(1,"#00334d");
+
+ctx.fillStyle=g;
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+wave("rgba(0,200,255,0.2)",20,0.01,1,canvas.height*0.5);
+wave("rgba(0,150,255,0.1)",35,0.008,1.2,canvas.height*0.55);
+
+drawBubbles();
+
+time+=0.02;
+requestAnimationFrame(animate);
+}
+
+animate();
+
+/* ICON INTERACTION */
+const icons=document.querySelectorAll(".icon");
+
+window.addEventListener("mousemove",(e)=>{
+let mx=e.clientX;
+let my=e.clientY;
+
+icons.forEach(icon=>{
+let r=icon.getBoundingClientRect();
+let ix=r.left+r.width/2;
+let iy=r.top+r.height/2;
+
+let dx=mx-ix;
+let dy=my-iy;
+
+let dist=Math.sqrt(dx*dx+dy*dy);
+
+if(dist<150){
+let f=(150-dist)/150;
+icon.style.transform=`translate(${dx*f*0.2}px,${dy*f*0.2}px) scale(${1+f*0.3})`;
+}else{
+icon.style.transform="";
+}
+});
+});
+</script>
+
+</body>
+</html>
